@@ -14,7 +14,7 @@
       Enter the password for the PDF file:
       <input type="text" id="pdfPasswordInput">
     </p>
-    <button id="removePasswordButton" onclick="" >Remove password</button>
+    <button id="removePasswordButton" >Remove password</button>
     
 <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
    <script>
@@ -26,9 +26,9 @@
 pdfPasswordInput.value = '1256';
 
       const { PDFDocument } = PDFLib;
-pdfPasswordInput.value = '5678';
+pdfPasswordInput.value = '567899';
 
-      removePasswordButton.addEventListener('click2', async () => {
+      removePasswordButton.addEventListener('click', async () => {
        
 
  const pdfFile = pdfFileInput.files[0];
