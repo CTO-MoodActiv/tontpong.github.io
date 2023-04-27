@@ -4,7 +4,7 @@
     <title>PDF password remover</title>
   </head>
   <body>
-    <h1>PDF password remover2</h1>
+    <h1>PDF password remover234</h1>
     <p>
       Select a password-protected PDF file to remove the password from:
     </p>
@@ -14,16 +14,19 @@
       Enter the password for the PDF file:
       <input type="text" id="pdfPasswordInput">
     </p>
-    <button id="removePasswordButton">Remove password</button>
+    <button id="removePasswordButton" onclick="" >Remove password</button>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.16.0/dist/pdf-lib.min.js"></script>
     <script>
-      const { PDFDocument } = PDFLib;
+
+
       const pdfFileInput = document.getElementById('pdfFileInput');
       const pdfPasswordInput = document.getElementById('pdfPasswordInput');
       const removePasswordButton = document.getElementById('removePasswordButton');
+pdfPasswordInput.value = '56';
 
-      removePasswordButton.addEventListener('click', async () => {
-       msgbox('55');
+      const { PDFDocument } = PDFLib;
+      removePasswordButton.addEventListener('click2', async () => {
+       //msgbox('55');
 
  const pdfFile = pdfFileInput.files[0];
         const pdfBytes = await readFileAsByteArray(pdfFile);
