@@ -42,10 +42,10 @@ async function rpwd() {
 
 pdfPasswordInput2.value = pdfPasswordInput.value;
 
-const pdfFile = pdfFileInput.files[0];
-        const pdfBytes = await readFileAsByteArray(pdfFile);
+//const pdfFile = pdfFileInput.files[0];
+       // const pdfBytes = await readFileAsByteArray(pdfFile);
         const password = pdfPasswordInput.value;
-        const pdfDoc = await PDFDocument.load(pdfBytes, { password });
+        const pdfDoc = await PDFDocument.load(createPdffile());
 
         // Create a new PDF document without a password
         const newPdfDoc = await PDFDocument.create();
@@ -71,8 +71,8 @@ function readFileAsByteArray(file) {
         });
       }
 
-    async function createPdf() {
-      // Create a new PDFDocument
+    async function createPdffile() {
+      // createPdfCreate a new PDFDocument
       const pdfDoc = await PDFDocument.create()
 
       // Embed the Times Roman font
@@ -100,8 +100,12 @@ function readFileAsByteArray(file) {
       // Serialize the PDFDocument to bytes (a Uint8Array)
       const pdfBytes = await pdfDoc.save()
 
-      // Trigger the browser to download the PDF document
-      download(pdfBytes, "pdf-lib_creation_example.pdf", "application/pdf");
+return pdfBytes;
+}
+
+   async function createPdf() {
+        // Trigger the browser to download the PDF document
+      download(createPdffile(), "pdf-lib_creation_example.pdf", "application/pdf");
     }
 
   </script>
