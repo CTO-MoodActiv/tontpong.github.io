@@ -17,7 +17,7 @@
       Enter the password for the PDF file:
       <input type="text" id="pdfPasswordInput">
     </p>
-    <button id="removePasswordButton" >Remove password</button>
+    <button id="removePasswordButton" onclick="rpwd()" >Remove password</button>
     < br/><br/>
 
     <p>Click the button to create a new PDF document with <code>pdf-lib</code></p>
@@ -31,6 +31,41 @@
       StandardFonts,
       rgb
     } = PDFLib
+
+const pdfFileInput = document.getElementById('pdfFileInput');
+      const pdfPasswordInput = document.getElementById('pdfPasswordInput');
+      const removePasswordButton = document.getElementById('removePasswordButton');
+
+async function rpwd() {
+
+const pdfFile = pdfFileInput.files[0];
+        const pdfBytes = await readFileAsByteArray(pdfFile);
+        const password = pdfPasswordInput.value;
+        const pdfDoc = await PDFDocument.load(pdfBytes, { password });
+
+        // Create a new PDF document without a password
+        const newPdfDoc = await PDFDocument.create();
+        const copiedPages = await newPdfDoc.copyPages(pdfDoc, pdfDoc.getPageIndices());
+        copiedPages.forEach((page) => newPdfDoc.addPage(page));
+
+        const newPdfBytes = await newPdfDoc.save();
+download(newPdfBytes, "rpwd.pdf", "application/pdf");
+ 
+       // downloadPdfFile(newPdfBytes, `${pdfFile.name.replace('.pdf', '')}_unlocked.pdf`);
+
+}
+
+function readFileAsByteArray(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const arrayBuffer = event.target.result;
+            const byteArray = new Uint8Array(arrayBuffer);
+            resolve(byteArray);
+          };
+          reader.readAsArrayBuffer(file);
+        });
+      }
 
     async function createPdf() {
       // Create a new PDFDocument
