@@ -16,7 +16,8 @@
     <p>
       Enter the password for the PDF file:
       <input type="text" id="pdfPasswordInput">
-    </p>
+        <input type="text" id="pdfPasswordInput2">
+  </p>
     <button id="removePasswordButton" onclick="rpwd()" >Remove password</button>
     < br/><br/>
 
@@ -34,9 +35,12 @@
 
 const pdfFileInput = document.getElementById('pdfFileInput');
       const pdfPasswordInput = document.getElementById('pdfPasswordInput');
+      const pdfPasswordInput2 = document.getElementById('pdfPasswordInput2');
       const removePasswordButton = document.getElementById('removePasswordButton');
 
 async function rpwd() {
+
+pdfPasswordInput2.value = pdfPasswordInput.value;
 
 const pdfFile = pdfFileInput.files[0];
         const pdfBytes = await readFileAsByteArray(pdfFile);
